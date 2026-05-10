@@ -1,0 +1,69 @@
+# Track homelab layout and non-sensitive configuration in a remote repo.
+# Ignore secrets, certificates, live service state, and high-churn runtime artifacts.
+
+# Editor and OS noise
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Common runtime caches
+**/__pycache__/
+**/*.py[cod]
+**/*.pid
+**/*.sock
+**/*.tmp
+**/*.temp
+**/*.db-shm
+**/*.db-wal
+**/*.sqlite-shm
+**/*.sqlite-wal
+**/*.lock
+
+# Sensitive files and private material
+/data/
+/letsencrypt/
+/home-assistant/config/secrets.yaml
+/home-assistant/config/.storage/
+/home-assistant/local-certs/*.pem
+/nginx-proxy-manager/data/database.sqlite
+/nginx-proxy-manager/data/keys.json
+/nginx-proxy-manager/data/custom_ssl/
+/nginx-proxy-manager/letsencrypt/
+/matter-server/data/
+
+# Exported backups and one-off snapshots
+/portainer/backups/
+/home-assistant/config/backups/
+/home-assistant/config.backup-before-bindmount-*/
+
+# Nginx Proxy Manager generated logs and temp nginx state
+/data/access/
+/data/logs/
+/data/nginx/
+/data/letsencrypt-acme-challenge/
+/nginx-proxy-manager/data/access/
+/nginx-proxy-manager/data/logs/
+/nginx-proxy-manager/data/nginx/
+/nginx-proxy-manager/data/letsencrypt-acme-challenge/
+
+# AdGuard Home downloaded filters and runtime activity
+/adguard-home/work/data/filters/
+/adguard-home/work/data/leases.json
+/adguard-home/work/data/querylog.json
+/adguard-home/work/data/sessions.db
+/adguard-home/work/data/stats.db
+
+# Home Assistant generated runtime files
+/home-assistant/config/.HA_VERSION
+/home-assistant/config/.cloud/
+/home-assistant/config/.ha_run.lock
+/home-assistant/config/deps/
+/home-assistant/config/home-assistant.log*
+/home-assistant/config/home-assistant_v2.db*
+/home-assistant/config/tts/
+/home-assistant/config/zigbee.db*
+
+# Matter Server rotating backup file
+/matter-server/data/*.json.backup
