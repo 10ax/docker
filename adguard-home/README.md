@@ -18,7 +18,7 @@ The files in this repo are the version-controlled mirror of that native setup.
 - host LAN IP: `192.168.1.7`
 - router or gateway IP: `192.168.1.1`
 - router model used during setup: `ZTE H388XF`
-- AdGuard web UI: `http://192.168.1.7`
+- AdGuard web UI: `http://192.168.1.7:3001`
 - DNS listener: `0.0.0.0:53`
 - DHCP listener: `0.0.0.0:67` on `eth0`
 - service manager: `systemd`
@@ -58,6 +58,8 @@ Tracked copy of the active helper scripts:
 
 - `wait-for-eth0-ip.sh`
 - `check-adguard-health.sh`
+- `check-local-service-routing.sh`
+- `check-airplay-dns-blocks.sh`
 - `disable-dhcp-after-router.sh`
 
 ## Validation commands
@@ -72,7 +74,14 @@ systemctl status adguard-healthcheck.timer --no-pager
 Check the critical listeners:
 
 ```sh
-ss -H -ltnup '( sport = :53 or sport = :67 or sport = :80 )'
+ss -H -ltnup '( sport = :53 or sport = :67 or sport = :3001 )'
+```
+
+Run the quick routing regression checks:
+
+```sh
+./bin/check-local-service-routing.sh
+./bin/check-airplay-dns-blocks.sh lgwebostv
 ```
 
 Check recent service logs:
