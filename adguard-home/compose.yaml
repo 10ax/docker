@@ -1,3 +1,4 @@
+# Legacy reference only. The live AdGuard service is native systemd via /opt/AdGuardHome.
 services:
   adguard-home:
     container_name: adguard-home

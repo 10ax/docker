@@ -212,14 +212,16 @@ openssl s_client -connect smart.casa:443 -servername smart.casa -CAfile casa-roo
 
 The service-routing maintenance runbook lives in [local-service-names.md](/root/docker/home-assistant/local-service-names.md).
 
+Status note as of 2026-05-15: the live AdGuard deployment is native systemd, so any DNS rewrite change must be applied to `/opt/AdGuardHome/AdGuardHome.yaml` and then mirrored back into `/root/docker/adguard-home/conf/AdGuardHome.yaml`.
+
 If a client has trouble with the `.casa` names, prefer the matching `.home.arpa` alias because `.home.arpa` is reserved for local home-network use.
 
 In short, adding a new local name usually means:
 
-1. Add a DNS rewrite in [AdGuardHome.yaml](/root/docker/adguard-home/conf/AdGuardHome.yaml).
+1. Add a DNS rewrite in `/opt/AdGuardHome/AdGuardHome.yaml`, then mirror the same change into [AdGuardHome.yaml](/root/docker/adguard-home/conf/AdGuardHome.yaml).
 2. Add or extend a matching HTTPS server block in `/root/docker/nginx-proxy-manager/data/nginx/custom/http.conf`.
 3. Regenerate the SAN certificate with the full hostname list, not just the new hostname.
-4. Reload nginx and restart AdGuard Home.
+4. Reload nginx and restart AdGuard Home with `systemctl restart AdGuardHome.service`.
 5. Install or reuse this same root CA on any client that should trust the new HTTPS name.
 
 ## Safe retirement later

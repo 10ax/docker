@@ -2,6 +2,8 @@
 
 This document covers the local hostname setup that lets LAN clients reach services by name instead of by IP and port.
 
+Status note as of 2026-05-15: the live AdGuard deployment is now a native systemd service using `/opt/AdGuardHome/AdGuardHome.yaml`. The current live AdGuard config does not contain these rewrite entries, so treat this file as a runbook for re-enabling local names rather than a statement of current live state.
+
 ## Current hostnames
 
 - `smart.casa` -> Home Assistant
@@ -52,7 +54,9 @@ This allows Home Assistant to accept requests forwarded by the existing Nginx Pr
 
 ### AdGuard Home
 
-File: `adguard-home/conf/AdGuardHome.yaml`
+Repo mirror file: `adguard-home/conf/AdGuardHome.yaml`
+
+Live runtime file: `/opt/AdGuardHome/AdGuardHome.yaml`
 
 Added enabled DNS rewrites:
 
@@ -185,7 +189,7 @@ docker exec nginx-proxy-manager-app-1 nginx -s reload
 Restart AdGuard Home after changing DNS rewrites:
 
 ```sh
-docker restart adguard-home
+systemctl restart AdGuardHome.service
 ```
 
 Re-check DNS and HTTPS end to end:
@@ -218,7 +222,7 @@ CAROOT=/root/.local/share/mkcert-home-lan mkcert \
 
 docker exec nginx-proxy-manager-app-1 nginx -t
 docker exec nginx-proxy-manager-app-1 nginx -s reload
-docker restart adguard-home
+systemctl restart AdGuardHome.service
 ```
 
 ### When you do not need to regenerate the certificate
@@ -285,7 +289,7 @@ docker exec nginx-proxy-manager-app-1 nginx -s reload
 ### Restart AdGuard Home
 
 ```sh
-docker restart adguard-home
+systemctl restart AdGuardHome.service
 ```
 
 ### Restart Home Assistant

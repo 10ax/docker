@@ -1,0 +1,11 @@
+[Unit]
+Description=Periodic AdGuard Home health check
+
+[Timer]
+OnBootSec=90s
+OnUnitActiveSec=5m
+AccuracySec=30s
+Unit=adguard-healthcheck.service
+
+[Install]
+WantedBy=timers.target

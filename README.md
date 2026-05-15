@@ -2,9 +2,11 @@
 
 This repository tracks the Docker Compose stacks and selected non-sensitive configuration under `/root/docker`.
 
+It also tracks selected host-native service files when a service has been moved out of Docker but is still part of the homelab runtime.
+
 ## Projects
 
-- `adguard-home`: AdGuard Home for LAN DNS and DHCP.
+- `adguard-home`: repository mirror for the live native AdGuard Home service and its legacy Docker compose file.
 - `home-assistant`: Home Assistant compose stack and core configuration.
 - `matter-bridge`: Matter server compose project that uses host data in `matter-server/data`.
 - `nginx-proxy-manager`: Reverse proxy and TLS termination.
