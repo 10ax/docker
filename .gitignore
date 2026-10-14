@@ -54,4 +54,4 @@ Thumbs.db
 /home-assistant/config/custom_components/
 
 # Matter Server rotating backup file
-/matter-server/data/*.json.backup
+/matter-server/data/*.json.backup/home-assistant/config
