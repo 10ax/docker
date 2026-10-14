@@ -1,8 +1,0 @@
-[Unit]
-Description=Check AdGuard Home service health
-After=network-online.target AdGuardHome.service
-Wants=network-online.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/sbin/check-adguard-health.sh
