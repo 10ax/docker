@@ -48,13 +48,6 @@ Thumbs.db
 /nginx-proxy-manager/data/nginx/
 /nginx-proxy-manager/data/letsencrypt-acme-challenge/
 
-# AdGuard Home downloaded filters and runtime activity
-/adguard-home/work/data/filters/
-/adguard-home/work/data/leases.json
-/adguard-home/work/data/querylog.json
-/adguard-home/work/data/sessions.db
-/adguard-home/work/data/stats.db
-
 # Home Assistant generated runtime files
 /home-assistant/config/.HA_VERSION
 /home-assistant/config/.cloud/
