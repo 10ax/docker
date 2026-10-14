@@ -27,9 +27,7 @@ Thumbs.db
 /home-assistant/config/secrets.yaml
 /home-assistant/config/.storage/
 /home-assistant/local-certs/*.pem
-/nginx-proxy-manager/data/database.sqlite
-/nginx-proxy-manager/data/keys.json
-/nginx-proxy-manager/data/custom_ssl/
+/nginx-proxy-manager/data/
 /nginx-proxy-manager/letsencrypt/
 /matter-server/data/
 
@@ -43,10 +41,6 @@ Thumbs.db
 /data/logs/
 /data/nginx/
 /data/letsencrypt-acme-challenge/
-/nginx-proxy-manager/data/access/
-/nginx-proxy-manager/data/logs/
-/nginx-proxy-manager/data/nginx/
-/nginx-proxy-manager/data/letsencrypt-acme-challenge/
 
 # Home Assistant generated runtime files
 /home-assistant/config/.HA_VERSION
