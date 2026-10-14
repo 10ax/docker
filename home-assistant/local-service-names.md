@@ -54,7 +54,7 @@ This allows Home Assistant to accept requests forwarded by the existing Nginx Pr
 
 ### AdGuard Home
 
-Repo mirror file: `adguard-home/conf/AdGuardHome.yaml`
+Repo mirror file: none. The Docker-era mirror `adguard-home/conf/AdGuardHome.yaml` was removed on 2026-10-14 (commit `58d57b1` in `/root/docker`); the live runtime file below is the only AdGuard configuration that matters.
 
 Live runtime file: `/opt/AdGuardHome/AdGuardHome.yaml`
 
@@ -163,7 +163,7 @@ openssl x509 -in /root/docker/nginx-proxy-manager/data/custom_ssl/casa-local.pem
 Inspect the current DNS rewrites:
 
 ```sh
-grep -n -A20 '^  rewrites:' /root/docker/adguard-home/conf/AdGuardHome.yaml
+grep -n -A20 '^  rewrites:' /opt/AdGuardHome/AdGuardHome.yaml
 ```
 
 Inspect the current reverse-proxy rules:
@@ -204,7 +204,7 @@ curl --cacert /root/docker/home-assistant/local-certs/casa-rootCA.pem https://sm
 Use this sequence whenever you add another hostname such as `newthing.casa`.
 
 1. Decide which backend it should reach and whether it is only an alias of an existing service or a new proxied service.
-2. Add a new enabled rewrite entry under `filtering.rewrites` in [AdGuardHome.yaml](/root/docker/adguard-home/conf/AdGuardHome.yaml).
+2. Add a new enabled rewrite entry under `filtering.rewrites` in [AdGuardHome.yaml](/opt/AdGuardHome/AdGuardHome.yaml).
 3. Update `/root/docker/nginx-proxy-manager/data/nginx/custom/http.conf`.
 4. If the new hostname points to an existing service, you can often just add it to an existing `server_name` line.
 5. If it points to a new backend, add a new `server` block with the correct upstream host, port, and any websocket or timeout settings it needs.
@@ -269,7 +269,7 @@ Use this order so clients do not keep resolving names to a host that no longer r
 
 1. Remove or disable the custom nginx server blocks in `/root/docker/nginx-proxy-manager/data/nginx/custom/http.conf`.
 2. Reload Nginx Proxy Manager.
-3. Remove the `smart.casa`, `hass.casa`, `guard.casa`, `portainer.casa`, and `matter.casa` rewrite entries from `adguard-home/conf/AdGuardHome.yaml`.
+3. Remove the `smart.casa`, `hass.casa`, `guard.casa`, `portainer.casa`, and `matter.casa` rewrite entries from `/opt/AdGuardHome/AdGuardHome.yaml`.
 4. Remove the parallel `.home.arpa` rewrite entries if you no longer want those aliases.
 5. Restart AdGuard Home.
 6. If Home Assistant no longer needs any reverse proxy, remove the `http` section from `config/configuration.yaml`.

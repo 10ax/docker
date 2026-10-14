@@ -6,7 +6,6 @@ It also tracks selected host-native service files when a service has been moved 
 
 ## Projects
 
-- `adguard-home`: repository mirror for the live native AdGuard Home service and its legacy Docker compose file.
 - `home-assistant`: Home Assistant compose stack and core configuration.
 - `matter-bridge`: Matter server compose project that uses host data in `matter-server/data`.
 - `nginx-proxy-manager`: Reverse proxy and TLS termination.
